@@ -1,16 +1,18 @@
 import { Tooltip } from "@mantine/core";
 import { useEffect, useState } from "react";
 import CopyToClipboard from "../../common/CopyToClipboard";
+import HelpTextComponent from "../HelpTextComponent/HelpTextComponent";
 import DataMapping from "./data-mapping";
 import "./SqlColumnsToCSharpVariables.scss";
 
 const SqlColumnsToCSharpVariables = () => {
   const [sqlText, setSqlText] = useState("");
   const [cSharpText, setCSharpText] = useState("");
+  
 
   const convertText = () => {
     if (!sqlText) {
-      setCSharpText('');
+      setCSharpText("");
       return;
     }
     let newVars = [];
@@ -55,7 +57,7 @@ const SqlColumnsToCSharpVariables = () => {
       newVar += " { get; set; }";
       newVars.push(newVar);
     });
-    setCSharpText(newVars.join('\n'));
+    setCSharpText(newVars.join("\n"));
   };
 
   useEffect(() => {
@@ -64,6 +66,11 @@ const SqlColumnsToCSharpVariables = () => {
 
   return (
     <div className="row" id="SqlColumnsToCSharpVariables">
+      <div className="col-md-12">
+        <HelpTextComponent>
+          <h3>Hello</h3>
+        </HelpTextComponent>
+      </div>
       <div className="col-md-6">
         <h5 className="text-center">SQL Columns Data</h5>
         <div className="form-group">
@@ -86,9 +93,9 @@ const SqlColumnsToCSharpVariables = () => {
           ></textarea>
           <div id="copy-button">
             <Tooltip label="Copy">
-              <button className="btn btn-secondary"
+              <button
+                className="btn btn-secondary"
                 onClick={() => CopyToClipboard(null, cSharpText)}
-              
               >
                 <i className="fa fa-clipboard"></i>
               </button>
