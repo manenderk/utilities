@@ -65,7 +65,7 @@ const SqlColumnsToCSharpVariables = () => {
   }, [sqlText]);
 
   return (
-    <div className="row" id="SqlColumnsToCSharpVariables">
+    <div className="row animate__animated animate__fadeIn" id="SqlColumnsToCSharpVariables">
       <div className="col-md-12">
         <HelpTextComponent>
           <h3>Hello</h3>
