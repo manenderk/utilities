@@ -8,7 +8,6 @@ import "./SqlColumnsToCSharpVariables.scss";
 const SqlColumnsToCSharpVariables = () => {
   const [sqlText, setSqlText] = useState("");
   const [cSharpText, setCSharpText] = useState("");
-  
 
   const convertText = () => {
     if (!sqlText) {
@@ -65,10 +64,68 @@ const SqlColumnsToCSharpVariables = () => {
   }, [sqlText]);
 
   return (
-    <div className="row animate__animated animate__fadeIn" id="SqlColumnsToCSharpVariables">
-      <div className="col-md-12">
+    <div
+      className="row animate__animated animate__fadeIn"
+      id="SqlColumnsToCSharpVariables"
+    >
+      <div className="col-md-12 mb-4">
         <HelpTextComponent>
-          <h3>Hello</h3>
+          <p>
+            It converts SQL Server variable information to C# variables. The SQL
+            Server variable information should be provided in this format:
+            &lt;Data Type&gt; &lt;Is Null&gt; &lt;Variable Name&gt;
+          </p>
+          <p>Below is the example conversion</p>
+          <div className="row pt-2">
+            <div className="col-md-6 mb-2">
+              <p>
+                <strong>SQL Columns Data</strong>
+              </p>
+              <div>
+                nvarchar no ProdCode
+                <br />
+                nvarchar yes Preservation
+                <br />
+                nvarchar yes Description
+                <br />
+                bit no RTI
+                <br />
+                nvarchar yes Group
+                <br />
+                smallint yes GroupCode
+                <br />
+                nvarchar yes Class
+                <br />
+                smallint yes ClassCode
+                <br />
+                nvarchar yes LabelInfo
+              </div>
+            </div>
+            <div className="col-md-6 mb-2">
+              <p>
+                <strong>C# Variables Data</strong>
+              </p>
+              <div>
+                public String ProdCode {"{"} get; set; {"}"}
+                <br />
+                public String? Preservation {"{"} get; set; {"}"}
+                <br />
+                public String? Description {"{"} get; set; {"}"}
+                <br />
+                public Boolean RTI {"{"} get; set; {"}"}
+                <br />
+                public String? Group {"{"} get; set; {"}"}
+                <br />
+                public Int16? GroupCode {"{"} get; set; {"}"}
+                <br />
+                public String? Class {"{"} get; set; {"}"}
+                <br />
+                public Int16? ClassCode {"{"} get; set; {"}"}
+                <br />
+                public String? LabelInfo {"{"} get; set; {"}"}
+              </div>
+            </div>
+          </div>
         </HelpTextComponent>
       </div>
       <div className="col-md-6">

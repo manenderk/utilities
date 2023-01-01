@@ -16,7 +16,10 @@ const HelpTextComponent = ({
       <Collapse
         in={isSectionOpenend}
       >
+        <div className="mt-2 p-2 help-container border">
         {children}
+        </div>
+        
       </Collapse>
     </div>
     
