@@ -23,7 +23,7 @@ const HomePage = () => {
   
 
   return (
-    <>
+    <div className="animate__animated animate__fadeIn">
       <div className="row">
         <div className="d-flex align-items-center justify-content-center mb-4">
           <input
@@ -49,7 +49,7 @@ const HomePage = () => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
