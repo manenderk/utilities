@@ -1,71 +1,69 @@
 import { Tooltip } from "@mantine/core";
 import { useEffect, useState } from "react";
-import CopyToClipboard from "../../common/CopyToClipboard";
-import HelpTextComponent from "../HelpTextComponent/HelpTextComponent";
-import DataMapping from "./data-mapping";
 
-const SqlColumnsToCSharpVariables = () => {
-  const [sqlText, setSqlText] = useState("");
-  const [cSharpText, setCSharpText] = useState("");
+const UrlParamGenerator = () => {
+  const [url, setUrl] = useState("");
+  const [updatedUrl, setUpdatedUrl] = useState("");
+  const [urlParams, setUrlParams] = useState("");
 
-  const convertText = () => {
-    if (!sqlText) {
-      setCSharpText("");
-      return;
+  const firstCharToLower = (str) => {
+    let upperRegex = /[A-Z]/;
+    let newStr = str.charAt(0).toLowerCase() + str.slice(1);
+    for (let i = 0; i < newStr.length; i++) {
+      if (i === 0) {
+        continue;
+      }
+      let prevChar = newStr[i - 1];
+      let currentChar = newStr[i];
+
+      if (upperRegex.test(prevChar) && upperRegex.test(currentChar)) {
+        newStr =
+          newStr.slice(0, i) +
+          newStr[i].toLowerCase() +
+          newStr.slice(i + 1, newStr.length);
+      }
     }
-    let newVars = [];
-    let vars = sqlText.split("\n");
-    vars = vars.map((row) => row.replace(/\s+/g, " "));
-    vars.forEach((varRow) => {
-      let newVar = "public";
-      let data = varRow.split(" ");
-      let sqlType = "";
-      let isNull = "";
-      let columnName = "";
-      for (let i = 0; i < data.length; i++) {
-        if (i === 0) {
-          sqlType = data[i];
-        } else if (i === 1) {
-          isNull = data[i];
-        } else {
-          columnName += data[i] + " ";
-        }
-      }
-      columnName = columnName.trim();
-      for (let i = 0; i < DataMapping.length; i++) {
-        if (DataMapping[i].sqlServer === sqlType) {
-          newVar += " " + DataMapping[i].cSharp;
-        }
-      }
-      if (isNull === "yes") {
-        newVar += "?";
-      }
-      if (
-        columnName.includes(" ") ||
-        columnName.includes("-") ||
-        columnName.includes("_")
-      ) {
-        newVars.push(`[Column("${columnName}")]`);
-        columnName = columnName
-          .replaceAll(" ", "")
-          .replaceAll("-", "")
-          .replaceAll("_", "");
-      }
-      newVar += " " + columnName;
-      newVar += " { get; set; }";
-      newVars.push(newVar);
-    });
-    setCSharpText(newVars.join("\n"));
+    return newStr;
   };
 
   useEffect(() => {
-    convertText();
-  }, [sqlText]);
+    if (!url) {
+      setUpdatedUrl("");
+      setUrlParams("");
+      return;
+    }
+
+    const inputUrl = url.trim();
+    const baseString = inputUrl.split("?")[0] || "";
+    const queryString = inputUrl.split("?")[1] || "";
+    const paramsString = queryString.split("&");
+
+    let valueArr = [];
+
+    const params = paramsString.map((param) => {
+      let [key, value] = param.split("=");
+      let newValue = firstCharToLower(key);
+      valueArr.push(newValue);
+      return `${key}={${newValue}}`;
+    });
+
+    valueArr = valueArr.map((value) => {
+      return `${value}: ,`;
+    });
+
+    valueArr = valueArr.join("\r\n");
+
+    const result = params.join("&");
+    const finalUrl = `${baseString}?${result}`;
+
+    setUpdatedUrl(finalUrl);
+    setUrlParams(valueArr);
+  }, [url]);
 
   return (
-    <div className="row" id="SqlColumnsToCSharpVariables">
+    <div className="row">
       <div className="col-md-12 mb-4">
-        <HelpTextComponent>
+        {/* <HelpTextComponent>
           <p>
             It converts SQL Server variable information to C# variables. The SQL
             Server variable information should be provided in this format:
@@ -122,33 +120,53 @@ const SqlColumnsToCSharpVariables = () => {
               </div>
             </div>
           </div>
-        </HelpTextComponent>
+        </HelpTextComponent> */}
       </div>
       <div className="col-md-6">
-        <h5 className="text-center">SQL Columns Data</h5>
-        <div className="form-group">
+        <h5 className="text-center">URL</h5>
+        <div className="form-group mb-3">
           <textarea
-            rows="20"
+            rows="5"
             className="form-control"
-            value={sqlText}
-            onChange={(e) => setSqlText(e.target.value)}
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
           ></textarea>
         </div>
-      </div>
-      <div className="col-md-6">
-        <h5 className="text-center">C# Variables Data</h5>
-        <div className="form-group position-relative">
+        <h5 className="text-center">Updated URL</h5>
+        <div className="form-group position-relative ">
           <textarea
-            rows="20"
+            rows="5"
             className="form-control"
-            value={cSharpText}
-            onChange={(e) => setCSharpText(e.target.value)}
+            value={updatedUrl}
+            readOnly
           ></textarea>
           <div className="input-copy-button">
             <Tooltip label="Copy">
               <button
                 className="btn btn-secondary"
-                onClick={() => CopyToClipboard(null, cSharpText)}
+                onClick={() => CopyToClipboard(null, updatedUrl)}
+              >
+                <i className="fa fa-clipboard"></i>
+              </button>
+            </Tooltip>
+          </div>
+        </div>
+      </div>
+      <div className="col-md-6">
+        
+        <h5 className="text-center">URL Params</h5>
+        <div className="form-group position-relative">
+          <textarea
+            rows="13"
+            className="form-control"
+            value={urlParams}
+            readOnly
+          ></textarea>
+          <div className="input-copy-button">
+            <Tooltip label="Copy">
+              <button
+                className="btn btn-secondary"
+                onClick={() => CopyToClipboard(null, urlParams)}
               >
                 <i className="fa fa-clipboard"></i>
               </button>
@@ -160,4 +178,4 @@ const SqlColumnsToCSharpVariables = () => {
   );
 };
 
-export default SqlColumnsToCSharpVariables;
+export default UrlParamGenerator;
