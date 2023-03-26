@@ -1,5 +1,7 @@
 import { Tooltip } from "@mantine/core";
 import { useEffect, useState } from "react";
+import CopyToClipboard from "../../common/CopyToClipboard";
+import HelpTextComponent from "../HelpTextComponent/HelpTextComponent";
 
 const UrlParamGenerator = () => {
   const [url, setUrl] = useState("");
@@ -41,7 +43,7 @@ const UrlParamGenerator = () => {
     let valueArr = [];
 
     const params = paramsString.map((param) => {
-      let [key, value] = param.split("=");
+      let [key] = param.split("=");
       let newValue = firstCharToLower(key);
       valueArr.push(newValue);
       return `${key}={${newValue}}`;
@@ -63,64 +65,37 @@ const UrlParamGenerator = () => {
   return (
     <div className="row">
       <div className="col-md-12 mb-4">
-        {/* <HelpTextComponent>
+        <HelpTextComponent>
           <p>
-            It converts SQL Server variable information to C# variables. The SQL
-            Server variable information should be provided in this format:
-            &lt;Data Type&gt; &lt;Is Null&gt; &lt;Variable Name&gt;
+            Generates URL params from the URL. It will also generate the Object to subsiture params.
           </p>
           <p>Below is the example conversion</p>
           <div className="row pt-2">
-            <div className="col-md-6 mb-2">
-              <p>
-                <strong>SQL Columns Data</strong>
-              </p>
-              <div>
-                nvarchar no ProdCode
-                <br />
-                nvarchar yes Preservation
-                <br />
-                nvarchar yes Description
-                <br />
-                bit no RTI
-                <br />
-                nvarchar yes Group
-                <br />
-                smallint yes GroupCode
-                <br />
-                nvarchar yes Class
-                <br />
-                smallint yes ClassCode
-                <br />
-                nvarchar yes LabelInfo
-              </div>
-            </div>
-            <div className="col-md-6 mb-2">
-              <p>
-                <strong>C# Variables Data</strong>
-              </p>
-              <div>
-                public String ProdCode {"{"} get; set; {"}"}
-                <br />
-                public String? Preservation {"{"} get; set; {"}"}
-                <br />
-                public String? Description {"{"} get; set; {"}"}
-                <br />
-                public Boolean RTI {"{"} get; set; {"}"}
-                <br />
-                public String? Group {"{"} get; set; {"}"}
-                <br />
-                public Int16? GroupCode {"{"} get; set; {"}"}
-                <br />
-                public String? Class {"{"} get; set; {"}"}
-                <br />
-                public Int16? ClassCode {"{"} get; set; {"}"}
-                <br />
-                public String? LabelInfo {"{"} get; set; {"}"}
+            <div className="col-md-12">
+              <div className="table-responsive">
+                <table className="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <td>URL</td>
+                      <td>http://example.com/AuthenticatorAPI/api/ApplicationDetails/GetAllUserActivePermissions?LoginID=123&applicationID=123</td>
+                    </tr>
+                    <tr>
+                      <td>Updated URL</td>
+                      <td>http://example.com/AuthenticatorAPI/api/ApplicationDetails/GetAllUserActivePermissions?LoginID=&#123;loginId&#125;&applicationID=&#123;applicationId&#125;</td>
+                    </tr>
+                    <tr>
+                      <td>URL Params</td>
+                      <td>
+                        loginId: ,<br/>
+                        applicationId: ,
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-        </HelpTextComponent> */}
+        </HelpTextComponent>
       </div>
       <div className="col-md-6">
         <h5 className="text-center">URL</h5>

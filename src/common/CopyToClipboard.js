@@ -14,7 +14,7 @@ const CopyToClipboard = async (ref, text) => {
     return;
   }
   console.log('fallbacking to document.execCommand("copy")');
-  var textArea = document.createElement("textarea");
+  const textArea = document.createElement("textarea");
   textArea.value = dataToCopy;
   textArea.style.top = "0";
   textArea.style.left = "0";

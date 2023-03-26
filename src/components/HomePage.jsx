@@ -17,7 +17,16 @@ const HomePage = () => {
         return page.title.toLowerCase().includes(textToFind);
       }
       return true;
-    })
+    });
+    pages = pages.sort((a, b) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    });
     setFilteredPages(pages);
   }, [searchText])
   
