@@ -12,6 +12,9 @@ const TableHeaderGenerator = lazy(() =>
 const SqlColumnsToCSharpVariables = lazy(() =>
   import("./components/SqlColumnsToCSharpVariables/SqlColumnsToCSharpVariables")
 );
+const CsvToHtmlTableComponent = lazy(() =>
+  import("./components/CsvToHtmlTableComponent/CsvToHtmlTableComponent")
+);
 
 const Pages = [
   {
@@ -49,6 +52,15 @@ const Pages = [
       </Suspense>
     ),
     title: "Object/Json To Interface",
+  },
+  {
+    path: "/csv-to-html-table",
+    element: (
+      <Suspense fallback="Loading...">
+        <CsvToHtmlTableComponent />
+      </Suspense>
+    ),
+    title: "Csv To Html Table",
   },
   {
     path: "/",

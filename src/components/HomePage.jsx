@@ -47,7 +47,7 @@ const HomePage = () => {
       </div>
       <div className="row">
         {filteredPages.map((page, idx) => (
-          <div className="col-md-3" key={idx}>
+          <div className="col-md-3 mb-4" key={idx}>
             <div className="card">
               <div className="card-body">
                 <Link to={page.path}>
