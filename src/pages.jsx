@@ -15,6 +15,9 @@ const SqlColumnsToCSharpVariables = lazy(() =>
 const CsvToHtmlTableComponent = lazy(() =>
   import("./components/CsvToHtmlTableComponent/CsvToHtmlTableComponent")
 );
+const SqlServerSpParamsToCSharpCodeComponent = lazy(() =>
+  import("./components/SqlServerSpParamsToCSharpCodeComponent/SqlServerSpParamsToCSharpCodeComponent")
+);
 
 const Pages = [
   {
@@ -61,6 +64,15 @@ const Pages = [
       </Suspense>
     ),
     title: "Csv To Html Table",
+  },
+  {
+    path: "/sql-server-sp-params-to-csharp-code",
+    element: (
+      <Suspense fallback="Loading...">
+        <SqlServerSpParamsToCSharpCodeComponent />
+      </Suspense>
+    ),
+    title: "SQL Server SP Params To C# Code",
   },
   {
     path: "/",
