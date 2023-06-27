@@ -72,7 +72,7 @@ const DataMapping = [
   {
     sqlServer: "int",
     clrSqlServer: "SqlInt32",
-    cSharp: "Int32",
+    cSharp: "int",
   },
   {
     sqlServer: "bigint",
@@ -113,6 +113,11 @@ const DataMapping = [
     sqlServer: "smalldatetime",
     clrSqlServer: "SqlDateTime",
     cSharp: "DateTime",
+  },
+  {
+    sqlServer: "datetimeoffset",
+    clrSqlServer: "SqlDateTimeOffset",
+    cSharp: "DateTimeOffset",
   },
   {
     sqlServer: "datetime",
