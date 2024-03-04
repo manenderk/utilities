@@ -68,7 +68,7 @@ const TableHeaderGenerator = () => {
   
   
   return (
-    <>
+    <div className='animate__animated animate__fadeIn'>
       <div className="row py-2">
         <div className="col-md-6 mb-2">
           <h5 className="text-center">Start Scratch from New Json</h5>
@@ -88,7 +88,7 @@ const TableHeaderGenerator = () => {
           <textarea cols="30" rows="10" className="form-control" value={output} readOnly></textarea>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

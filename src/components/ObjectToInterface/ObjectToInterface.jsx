@@ -55,7 +55,7 @@ const ObjectToInterface = () => {
   }, [inputObject]);
 
   return (
-    <div className="row">
+    <div className="row animate__animated animate__fadeIn">
       <div className="col-md-12 mb-4">
         <HelpTextComponent>
           <p>Converts a JSON/Object into an interface</p>

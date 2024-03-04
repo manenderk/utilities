@@ -18,6 +18,9 @@ const CsvToHtmlTableComponent = lazy(() =>
 const SqlServerSpParamsToCSharpCodeComponent = lazy(() =>
   import("./components/SqlServerSpParamsToCSharpCodeComponent/SqlServerSpParamsToCSharpCodeComponent")
 );
+const TimezoneConverter = lazy(() =>
+  import("./components/TimeZoneConverer/TimeZoneConverer")
+);
 
 const Pages = [
   {
@@ -73,6 +76,15 @@ const Pages = [
       </Suspense>
     ),
     title: "SQL Server SP Params To C# Code",
+  },
+  {
+    path: "/timezone-converter",
+    element: (
+      <Suspense fallback="Loading...">
+        <TimezoneConverter />
+      </Suspense>
+    ),
+    title: "Timezone Converter",
   },
   {
     path: "/",

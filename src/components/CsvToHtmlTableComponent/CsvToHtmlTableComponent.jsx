@@ -84,7 +84,7 @@ const CsvToHtmlTableComponent = () => {
   
 
   return (
-    <div className="row">
+    <div className="row animate__animated animate__fadeIn">
       <div className="col-md-12 mb-4">
         <HelpTextComponent>
           <p>Converts a CSV/Text to html table</p>
