@@ -10,6 +10,7 @@ const SqlServerSpParamsToCSharpCodeComponent = () => {
 
   const getCSharpDataType = (sqlDataType) => {
     let returnValue = null;
+    sqlDataType = sqlDataType.toUpperCase();
 
     switch (sqlDataType) {
       case "INT":
@@ -291,7 +292,7 @@ Value = 0
           </div>
         </HelpTextComponent>
       </div>
-      <div className="col-md-6">
+      <div className="col-md-6 mb-3">
         <h5 className="text-center">SQL Server Params</h5>
         <div className="form-group">
           <textarea
@@ -302,7 +303,7 @@ Value = 0
           ></textarea>
         </div>
       </div>
-      <div className="col-md-6">
+      <div className="col-md-6 mb-3">
         <h5 className="text-center">C# Code</h5>
         <div className="form-group position-relative">
           <textarea

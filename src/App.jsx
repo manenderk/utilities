@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useHref, useRoutes } from "react-router-dom";
 import "./App.scss";
 import Pages from "./pages";
@@ -5,6 +6,10 @@ import Pages from "./pages";
 function App() {
   const currentRoute = useHref();
   const routes = useRoutes(Pages);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentRoute]);
 
   return (
     <div className="App dark-theme">

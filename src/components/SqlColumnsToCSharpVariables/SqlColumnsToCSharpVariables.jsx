@@ -127,7 +127,7 @@ const SqlColumnsToCSharpVariables = () => {
           </div>
         </HelpTextComponent>
       </div>
-      <div className="col-md-6">
+      <div className="col-md-6 mb-3">
         <h5 className="text-center">SQL Columns Data</h5>
         <div className="form-group">
           <textarea
@@ -138,7 +138,7 @@ const SqlColumnsToCSharpVariables = () => {
           ></textarea>
         </div>
       </div>
-      <div className="col-md-6">
+      <div className="col-md-6 mb-3">
         <h5 className="text-center">C# Variables Data</h5>
         <div className="form-group position-relative">
           <textarea

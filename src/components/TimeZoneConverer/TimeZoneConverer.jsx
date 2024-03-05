@@ -42,23 +42,28 @@ const TimezoneConverter = () => {
         </div>
         <div className="col-md-12">
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-6 col-lg-4 d-flex align-items-center mb-2">
               <Select
                 data={timezones}
                 placeholder="Select Timezone"
                 searchable
-                style={{ height: "38px" }}
+                style={{
+                  flexGrow: 1,
+                  marginRight: "10px",
+                }}
                 value={selectedTimezone}
                 onChange={(value) => {
                   setSelectedTimezone(value);
                 }}
               />
-            </div>
-            <div className="col-md-4">
+
               <button
                 className="btn btn-secondary"
                 onClick={() => {
-                  if (selectedTimezone && !selectedTimezones.includes(selectedTimezone)) {
+                  if (
+                    selectedTimezone &&
+                    !selectedTimezones.includes(selectedTimezone)
+                  ) {
                     setSelectedTimezones([
                       ...selectedTimezones,
                       selectedTimezone,
@@ -69,7 +74,7 @@ const TimezoneConverter = () => {
                 Add
               </button>
             </div>
-            <div className="col-md-4 text-end">
+            <div className="col-md-6 col-lg-8 text-end mb-2">
               <button
                 className="btn btn-secondary"
                 onClick={() => {
@@ -85,8 +90,8 @@ const TimezoneConverter = () => {
       <div className="row">
         {selectedTimezones.map((timezone) => {
           return (
-            <div className="col-md-4" key={timezone}>
-              <div className="card">
+            <div className="col-md-6 col-lg-4" key={timezone}>
+              <div className="card mb-3">
                 <div className="card-body">
                   <div className="d-flex align-items-center justify-content-between">
                     <h5>{timezone}</h5>

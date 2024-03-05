@@ -108,7 +108,7 @@ const UrlParamGenerator = () => {
           ></textarea>
         </div>
         <h5 className="text-center">Updated URL</h5>
-        <div className="form-group position-relative ">
+        <div className="form-group position-relative mb-3">
           <textarea
             rows="5"
             className="form-control"

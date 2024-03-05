@@ -10,7 +10,7 @@
       color: #fff;
     }
 
-    .form-control {
+    .form-control, .mantine-Input-input {
       background-color: #555;
       color: #fff;
       border: 1px solid #acacac;
@@ -27,8 +27,7 @@
     .table {
       color: #fff;
       background-color: inherit;
-    }
-    
+    }    
   }
 }
 
@@ -69,4 +68,8 @@ p {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
+}
+
+.mantine-Input-input {
+  height: 36px;
 }
