@@ -3,14 +3,14 @@ import { TimeInput } from "@mantine/dates";
 import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
-
 import React, { useEffect, useState } from "react";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const timezones = Intl.supportedValuesOf("timeZone");
 const userTimezone = dayjs.tz.guess();
 const dtStr = new Date().toISOString().split("T")[0];
-dayjs.extend(utc);
-dayjs.extend(timezone);
 
 const TimezoneConverter = () => {
   const getSelectedTimezone = () => {
